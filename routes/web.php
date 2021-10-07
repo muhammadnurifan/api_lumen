@@ -21,6 +21,12 @@ $router->post('register', 'LoginController@register');
 
 $router->post('login', 'LoginController@login');
 
+$router->get('user-list', 'LoginController@index');
+
+$router->get('/send-email', 'EmailController@sendEmail');
+
+$router->get('filterdatajson', 'FilterDataJsonController@filterdatajson');
+
 $router->get('item-list', 'ItemController@index');
 $router->post('item-create', 'ItemController@create');
 $router->put('item-update/{_id}', 'ItemController@update');

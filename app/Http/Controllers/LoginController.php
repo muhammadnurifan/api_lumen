@@ -10,6 +10,12 @@ use Auth;
 
 class LoginController extends Controller
 {
+    public function index(Request $request)
+    { 
+        $users = User::all();
+        return response()->json($users);
+    }
+
     public function register(Request $request)
     { 
         $this->validate($request, [
@@ -25,7 +31,11 @@ class LoginController extends Controller
         ];
 
         $users = User::create($data);
-        return response()->json($users);
+        $result = array(
+            "email" => $request['email'],
+            "password" => $request['password']
+        );
+        return response()->json($result, 201);
     }
 
     public function login(Request $request)
@@ -45,6 +55,11 @@ class LoginController extends Controller
             'uid' => $user->_id
         ];
         $token = JWT::encode($payload, env('JWT_SECRET'));
-        return response()->json(['accsess_token' => $token]);
+        $result = array(
+            "email" => $request['email'],
+            "password" => $request['password'],
+            "access_token" => $token
+        );
+        return response()->json($result, 200);
     }
 }

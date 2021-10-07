@@ -53,6 +53,15 @@ $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 
 $app->register(Jenssegers\Mongodb\MongodbServiceProvider::class);
 
+$app->register(App\Providers\AppServiceProvider::class);
+
+$app->register(Illuminate\Mail\MailServiceProvider::class);
+
+$app->configure('services');
+$app->configure('mail');
+
+$app->configure('services');
+
 $app->withEloquent();
 
 $app->withFacades();
@@ -60,6 +69,7 @@ $app->withFacades();
 $app->register('Sentry\Laravel\ServiceProvider');
 
 $app->register('Sentry\Laravel\Tracing\ServiceProvider');
+
 
 
 
